@@ -11,9 +11,14 @@ import {
   Stack,
   Box,
 } from "@mui/material";
-import { ShoppingCart, Star } from "@mui/icons-material";
+import { ShoppingCart, Star, Check } from "@mui/icons-material";
+import { useEnrollments } from "./EnrollmentContext";
 
 const CourseCard = ({ course }) => {
+  const { enrollments, addToEnrollments, removeFromEnrollments } =
+    useEnrollments();
+  const isEnrolled = enrollments.some((item) => item.id === course.id);
+
   return (
     <Card
       sx={{
@@ -26,8 +31,8 @@ const CourseCard = ({ course }) => {
           transform: "translateY(-5px)",
           boxShadow: 6,
         },
-        minWidth: 280, // عرض أدنى ثابت
-        maxWidth: 280, // عرض أقصى ثابت (نفس العرض الأدنى)
+        minWidth: 280,
+        maxWidth: 280,
       }}
     >
       {/* حاوية الصورة مع حل نهائي لمشكلة الأبعاد */}
@@ -122,12 +127,18 @@ const CourseCard = ({ course }) => {
       >
         <Chip label={`$${course.price}`} color="primary" variant="outlined" />
         <Button
-          variant="contained"
+          variant={isEnrolled ? "outlined" : "contained"}
           size="small"
-          startIcon={<ShoppingCart />}
+          startIcon={isEnrolled ? <Check /> : <ShoppingCart />}
           sx={{ borderRadius: 2 }}
+          onClick={() =>
+            isEnrolled
+              ? removeFromEnrollments(course.id)
+              : addToEnrollments(course)
+          }
+          color={isEnrolled ? "success" : "primary"}
         >
-          Enroll Now
+          {isEnrolled ? "Enrolled" : "Enroll"}
         </Button>
       </CardActions>
     </Card>

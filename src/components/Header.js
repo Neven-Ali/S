@@ -1,14 +1,14 @@
-import React from 'react';
-import { 
-  AppBar, 
-  Toolbar, 
-  Typography, 
-  Button, 
+import React from "react";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
   IconButton,
   Box,
-  Container
-} from '@mui/material';
-import { School, ShoppingCart } from '@mui/icons-material';
+  Container,
+} from "@mui/material";
+import { School, ShoppingCart } from "@mui/icons-material";
 
 const Header = () => {
   return (
@@ -24,10 +24,18 @@ const Header = () => {
           >
             <School />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            LearnHub
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              flexGrow: 1,
+            
+              fontSize: "1.5rem",
+            }}
+          >
+            Neven's Academy
           </Typography>
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Button color="inherit">Home</Button>
             <Button color="inherit">Courses</Button>
             <Button color="inherit">About</Button>
@@ -36,7 +44,9 @@ const Header = () => {
           <IconButton color="inherit">
             <ShoppingCart />
           </IconButton>
-          <Button color="inherit" variant="outlined" sx={{ ml: 2 }}>Login</Button>
+          <Button color="inherit" variant="outlined" sx={{ ml: 2 }}>
+            Login
+          </Button>
         </Toolbar>
       </Container>
     </AppBar>
